@@ -45,16 +45,42 @@
 			<h2>Yfirlit söluaðila.</h2>
 			<div class="wrapper">
 			<% 
+				minpriceP = 2000.0
+				minpriceD = 2000.0
+
+
 				le = len(data['results'])
+				cnt = 0
+
 				for i in range(le -1):
-				if (data['results'][i]['company'] != data['results'][i+1]['company']):
+					cnt = i
+					if minpriceP > data['results'][i]['bensin95']:
+						minpriceP = data['results'][i]['bensin95']
+						companyP = data['results'][i]['company']
+					end
+					if minpriceD > data['results'][i]['diesel']:
+						minpriceD = data['results'][i]['diesel']
+						companyD = data['results'][i]['company']
+					end
+
+				if (data['results'][i]['company'] != data['results'][i-1]['company']):
 			%>
 				<div class="box">
 					<a href="/company/{{data['results'][i]['company']}}"> {{data['results'][i]['company']}}</a>
 				</div>
-				<% end
+			<%
+				end
+				end
 			%>
 			</div>
+			<div class="box">
+				<h2>Besta verð</h2>
+				<h3>Bensín 95 oktan: {{[minpriceP]}} er hjá {{companyP}}</h3>
+				<h3>Diesel: {{[minpriceD]}} er hjá {{companyD}}</h3>
+			</div>
 		</section>
+	<footer>
+		<h3>Síðast uppfært: {{data['timestampPriceCheck']}}</h3>
+	</footer>
 </body>
 </html>

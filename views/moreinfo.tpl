@@ -17,6 +17,14 @@
 		<h3>Bensin 95: {{i['bensin95']}}</h3>
 		<h3>Dísel: {{i['diesel']}}</h3>
 	</div>
+
+	<div class="box">
+		<h3>Latitude: {{i['geo']['lat']}}</h3>
+		<h3>Longditude: {{i['geo']['lon']}}</h3>
+		<a href="https://www.google.com/maps/@{{i['geo']['lat']}},{{i['geo']['lon']}},18z">Staðsetning á korti</a>
+		
+		
+	</div>
 	<%
 		end
 		end
